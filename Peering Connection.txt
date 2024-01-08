@@ -1,0 +1,19 @@
+------------------------> VPC Peering Connection  ------------->
+
+------------> create Peering connection ------------------------>
+
+
+Peering connection --> Name ----> Select a local VPC to peer with (Requester) ----> Account -----> Region ----> VPC ID Accepter  ----> create peering connection 
+
+Then go to Actions ---> Accept Request
+
+DNS ----> Edit ANS seetings ----> Allow Accepter VPC Requester DNS resolution ----> Allow requester vpc Accepter DNS resolution  ---->save changes
+
+
+Go to Accepter VPC route table ---> edit route ----> Destination (CIDR IP of Requester VPC ) ----> Target (peering connection) select peering connection id ---> save changes
+
+Go to Requester VPC route table ---> edit route ----> Destination (CIDR IP of Accepter VPC ) ----> Target (peering connection) select peering connection id ---> save changes
+
+Then create ec2 instances in Accepter VPC and Requester VPC and then in the security groups of Accepter VPC add the private id of instance of Requester VPC , and viceversa.
+
+And then connect to the instance in the Accepter VPC and use ping command and add private address of Ec2 instance of Requester VPC
