@@ -1,0 +1,25 @@
+------------------------> VPC Transit Gateway  ------------->
+
+------------> create Transit Gateway ------------------------>
+
+Transit Gateway ---> Name ---> 
+DNS support ---- > VPN ECMP support ----> Default route table association  ----> Default route table propagation ----> checked in 
+----> tags ----> create Transit Gateway .
+
+
+Create transit gateway attachment --> Name ----> Transit gateway ID (which created earlier on ) --->Attachment type (VPC) ---> VPC attachment(DNS support)-->
+----> select VPC ID of 1 VPC ----> tags -----> create transit gateway of 1 vpc 
+
+
+Create transit gateway attachment --> Name ----> Transit gateway ID (which created earlier on ) --->Attachment type (VPC) ---> VPC attachment(DNS support)-->
+----> select VPC ID of 2 VPC ----> tags -----> create transit gateway of 2 vpc 
+
+
+Go to  VPC 1 route table ---> edit route ----> Destination (CIDR IP of VPC 2 ) ----> Target (TransitGateway) select Transit Gateway id ---> save changes
+
+
+Go to  VPC 2 route table ---> edit route ----> Destination (CIDR IP of VPC 1 ) ----> Target (TransitGateway) select Transit Gateway id ---> save changes 
+
+Then create ec2 instances in  VPC1 and  VPC 2 and then in the security groups of  VPC1 add the private id of instance of  VPC 2 , and viceversa.
+
+And then connect to the instance in the  VPC 1 and use ping command and add private address of Ec2 instance of  VPC 2
